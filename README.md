@@ -1,5 +1,5 @@
 
-![Java_Kafka_LOGO]([http://url/to/img.png](https://img-c.udemycdn.com/course/750x422/4517244_9fa8_2.jpg))
+![Java_Kafka_LOGO](https://img-c.udemycdn.com/course/750x422/4517244_9fa8_2.jpg)
 
 
 # Project Overview: A Scalable & Real-Time Data Pipeline for IoT
