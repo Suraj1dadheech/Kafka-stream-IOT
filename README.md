@@ -1,5 +1,5 @@
 
-**Project Overview:** A Scalable & Real-Time Data Pipeline for IoT
+****Project Overview:** A Scalable & Real-Time Data Pipeline for IoT**
 This repository houses a powerful Kafka Streams application serving as the backbone of my comprehensive IoT monitoring solution. This project empowers you to:
 
 Ingest High-Volume Data: Seamlessly capture critical health metrics and environmental logs from your IoT devices at breathtaking speed, with data generation occurring every single second.
