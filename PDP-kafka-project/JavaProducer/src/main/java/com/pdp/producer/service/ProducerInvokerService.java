@@ -27,7 +27,12 @@ public class ProducerInvokerService {
 		Producer<String, String> producer = kafkaConfig.invokeKafkaConfig();
     	System.out.println("Started Producing the data.......................");
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SS");
+        int count = 0;
         while (true) {   
+//        	if(count==6) {
+//        		break;
+//        	}
+        	count++;
         	String currentTime = LocalDateTime.now().format(formatter);
         	
         	// generating random data........
@@ -36,7 +41,7 @@ public class ProducerInvokerService {
             // producing environmental data to environmental topic.........
             produceIOTdataToKafka(producer, currentTime, environmentalData,environmentalTopic);
             try {
-				Thread.sleep(1000);
+				Thread.sleep(500);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
