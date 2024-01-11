@@ -8,7 +8,7 @@ public class JavaProducerApplication {
 	
 
 	public static void main(String[] args) throws InterruptedException {
-		SpringApplication.run(JavaProducerApplication.class, args); 
+		SpringApplication.run(JavaProducerApplication.class, args);
 	}
 
 }
