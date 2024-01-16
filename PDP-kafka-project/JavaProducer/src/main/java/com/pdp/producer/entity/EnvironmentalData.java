@@ -55,11 +55,25 @@ public class EnvironmentalData {
 	public double getCo2() {
 		return co2;
 	}
+	
+	
+
+	public void setPm25(double pm25) {
+		this.pm25 = pm25;
+	}
+
+
+
+	public void setCo2(double co2) {
+		this.co2 = co2;
+	}
+
+
 
 	@Override
 	public String toString() {
-		return "{ pm25 : " + pm25 + ", co2 : " + co2 + ", temperature : " + temperature + ", humidity : " + humidity
-				+ ", time : " + time + " }";
+		return "{ \"pm25\" : " + pm25 + ", \"co2\" : " + co2 + ", \"temperature\" : " + temperature + ", \"humidity\" : " + humidity
+				+ ", \"time\" : \"" + time + "\" }";
 	}
 
 }
