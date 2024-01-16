@@ -28,11 +28,7 @@ public class ProducerInvokerService {
     	System.out.println("Started Producing the data.......................");
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SS");
         int count = 0;
-        while (true) {   
-//        	if(count==6) {
-//        		break;
-//        	}
-        	count++;
+        while (true) {
         	String currentTime = LocalDateTime.now().format(formatter);
         	
         	// generating random data........
