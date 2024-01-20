@@ -1,5 +1,6 @@
 package com.java.consumer.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -14,7 +15,8 @@ public class ConsumerController {
 	
 	String temperatureTopic = "TEMPERATURE_TOPIC";
 	
-	private ConsumerInvokerService consumerInvokerService = new ConsumerInvokerService();
+	@Autowired
+	private ConsumerInvokerService consumerInvokerService;
 	
 	@GetMapping("/consume/health")
 	public void consumeHealthData() {
