@@ -4,10 +4,13 @@ import static com.pdp.producer.utils.Constants.UUID_HEALTH5;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.pdp.producer.dto.Health;
 import com.pdp.producer.service.ProducerInvokerService;
 
@@ -47,7 +50,7 @@ public class HealthMonitoringDevice5 implements Runnable {
 //			System.out.println(health);
 
 			String currentTime = LocalDateTime.now().format(formatter);
-			producerInvokerService.produceIOTdataToKafka(currentTime, health, "HEALTH_TOPIC");
+			producerInvokerService.produceIOTdataToKafka(currentTime, generatePartialJson(health), "HEALTH_TOPIC");
 
 			try {
 				Thread.sleep(1000); // Sleep for 3 seconds
@@ -56,4 +59,29 @@ public class HealthMonitoringDevice5 implements Runnable {
 			}
 		}
 	}
+	
+	 private static String generatePartialJson(Health health) {
+	        // Convert WeatherDTO to a Map
+	        Map<String, Object> attributeMap = new ObjectMapper().convertValue(health, Map.class);
+
+	        // Randomly choose a subset of keys to include in the JSON
+	        int selectedKeyCount = new Random().nextInt(attributeMap.size()) + 1;
+	        Object[] allKeys = attributeMap.keySet().toArray();
+	        Object[] selectedKeys = new Object[selectedKeyCount];
+	        System.arraycopy(allKeys, 0, selectedKeys, 0, selectedKeyCount);
+
+	        // Create a Map with only the selected key-value pairs
+	        Map<String, Object> partialJsonMap = new HashMap<>();
+	        for (Object key : selectedKeys) {
+	            partialJsonMap.put((String) key, attributeMap.get(key));
+	        }
+
+	        // Convert the Map to JSON
+	        try {
+	            return new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(partialJsonMap);
+	        } catch (Exception e) {
+	            e.printStackTrace();
+	            return null;
+	        }
+	    }
 }

@@ -10,11 +10,20 @@ import com.java.consumer.service.ConsumerInvokerService;
 @RequestMapping("/api/v1")
 public class ConsumerController {
 	
+	String healthTopic = "HEALTH_TOPIC";
+	
+	String temperatureTopic = "TEMPERATURE_TOPIC";
+	
 	private ConsumerInvokerService consumerInvokerService = new ConsumerInvokerService();
 	
-	@GetMapping("/consumer")
-	public void produceRecords() {
-		consumerInvokerService.invokeConsumer();
+	@GetMapping("/consume/health")
+	public void consumeHealthData() {
+		consumerInvokerService.invokeConsumer(healthTopic);
+	}
+	
+	@GetMapping("/consume/temperature")
+	public void consumeTemperatureData() {
+		consumerInvokerService.invokeConsumer(temperatureTopic);
 	}
 
 }
