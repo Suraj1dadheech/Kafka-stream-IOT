@@ -16,6 +16,8 @@ import org.apache.kafka.clients.consumer.ConsumerRecords;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
 
 import com.java.consumer.config.KafkaConfig;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -29,6 +31,8 @@ public class ConsumerInvokerService {
 	private WeatherDataRepository weatherDataRepository;
 	
 	private KafkaConfig kafkaConfig = new KafkaConfig();
+
+	Logger logger = LoggerFactory.getLogger(ConsumerInvokerService.class);
 	
 	public void invokeConsumer(String topic) {
 		ObjectMapper objectMapper = new ObjectMapper();
@@ -42,7 +46,7 @@ public class ConsumerInvokerService {
 			 List<WeatherData> weatherDataList = new ArrayList<>();
 			 List<Health> healthList = new ArrayList<>();
 			 for(ConsumerRecord<String, String> record:consumerRecords) {
-				 System.out.println(topic+" - "+count);
+				 logger.info(topic+" - "+count);
 				 System.out.println(record.key()+"    ::::::    "+record.value());
 				 count++;
 				 try {
