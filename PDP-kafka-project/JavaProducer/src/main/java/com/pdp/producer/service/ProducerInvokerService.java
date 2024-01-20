@@ -20,11 +20,13 @@ public class ProducerInvokerService {
 	@Autowired
 	private EnvironmentalDataService environmentalDataService;
 	
+	Producer<String, String> producer = kafkaConfig.invokeKafkaConfig();
+	
 	private String environmentalTopic = "environmental_data";
 	private String healthTopic = "health_data";
 
 	public void invokeProducer() {
-		Producer<String, String> producer = kafkaConfig.invokeKafkaConfig();
+		
     	System.out.println("Started Producing the data.......................");
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SS");
         int count = 0;
@@ -35,7 +37,7 @@ public class ProducerInvokerService {
             EnvironmentalData environmentalData = environmentalDataService.generateIotRandomData(currentTime);
             
             // producing environmental data to environmental topic.........
-            produceIOTdataToKafka(producer, currentTime, environmentalData,environmentalTopic);
+            produceIOTdataToKafka(currentTime, environmentalData,environmentalTopic);
             try {
 				Thread.sleep(500);
 			} catch (InterruptedException e) {
@@ -45,7 +47,7 @@ public class ProducerInvokerService {
         
 	}
 
-	private void produceIOTdataToKafka(Producer<String, String> producer, String currentTime, Object iotData, String currentTopic) {
+	public void produceIOTdataToKafka(String currentTime, Object iotData, String currentTopic) {
 		ProducerRecord<String, String> producerRecord = new ProducerRecord<String, String>(currentTopic, currentTime, iotData.toString());
 		producer.send(producerRecord);
 	}
