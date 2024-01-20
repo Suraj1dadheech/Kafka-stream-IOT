@@ -1,13 +1,22 @@
 package com.pdp.producer.service.producerService.Temperature;
 
 import com.pdp.producer.dto.Temparature;
+import com.pdp.producer.service.ProducerInvokerService;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Random;
+
+import org.springframework.beans.factory.annotation.Autowired;
 
 import static com.pdp.producer.utils.Constants.UUID_TEMPERATURE;
 import static com.pdp.producer.utils.Constants.UUID_TEMPERATURE4;
 
 public class TemperatureMonitoringDevice4 implements Runnable {
+	
+	private ProducerInvokerService producerInvokerService = new ProducerInvokerService();
+	
+	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SS");
 
     private Random random = new Random();
 
@@ -36,7 +45,10 @@ public class TemperatureMonitoringDevice4 implements Runnable {
             temparature.setWindSpeed(windSpeed);
             temparature.setWindDirection(windDirection);
 
-            System.out.println(temparature);
+//            System.out.println(temparature);
+            
+            String currentTime = LocalDateTime.now().format(formatter);
+            producerInvokerService.produceIOTdataToKafka(currentTime, temparature, "TEMPERATURE_TOPIC");
 
             try {
                 Thread.sleep(1000); // Sleep for 3 seconds

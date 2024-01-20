@@ -1,13 +1,13 @@
-package com.java.pdp;
+package com.java.consumer;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class PdpApplication {
+public class ConsumerApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(PdpApplication.class, args);
+		SpringApplication.run(ConsumerApplication.class, args);
 	}
 
 }

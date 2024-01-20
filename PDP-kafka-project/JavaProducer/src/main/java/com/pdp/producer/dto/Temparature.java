@@ -79,7 +79,7 @@ public class Temparature {
 
     @Override
     public String toString() {
-        return "{ \"UUID\" : " + UUID + ", \"temperature\" : " + temperature + ", \"humidity\" : "+ humidity + ", \"pressure\" : "
-                + pressure + ", \"windSpeed\" : "+ windSpeed + ", \"windDirection\" : "+ windDirection + "\" }";
+        return "{ \"UUID\" : \"" + UUID + "\", \"temperature\" : " + temperature + ", \"humidity\" : "+ humidity + ", \"pressure\" : "
+                + pressure + ", \"windSpeed\" : "+ windSpeed + ", \"windDirection\" : "+ windDirection + "}";
     }
 }
