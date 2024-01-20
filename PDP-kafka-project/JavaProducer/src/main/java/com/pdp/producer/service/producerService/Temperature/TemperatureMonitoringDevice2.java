@@ -1,13 +1,13 @@
-package com.pdp.producer.service.producerService;
+package com.pdp.producer.service.producerService.Temperature;
 
 import com.pdp.producer.dto.Temparature;
 
 import java.util.Random;
 
 import static com.pdp.producer.utils.Constants.UUID_TEMPERATURE;
-import static java.text.ChoiceFormat.nextDouble;
+import static com.pdp.producer.utils.Constants.UUID_TEMPERATURE2;
 
-public class TemperatureMonitoringDevice implements Runnable {
+public class TemperatureMonitoringDevice2 implements Runnable {
 
     private Random random = new Random();
 
@@ -29,7 +29,7 @@ public class TemperatureMonitoringDevice implements Runnable {
 //            System.out.println("Wind Direction: " + windDirection + " degrees");
 
             Temparature temparature=new Temparature();
-            temparature.setUUID(UUID_TEMPERATURE);
+            temparature.setUUID(UUID_TEMPERATURE2);
             temparature.setTemperature(temperature);
             temparature.setHumidity(humidity);
             temparature.setPressure(pressure);

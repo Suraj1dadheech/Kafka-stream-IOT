@@ -1,12 +1,13 @@
-package com.pdp.producer.service.producerService;
+package com.pdp.producer.service.producerService.Health;
 
 import com.pdp.producer.dto.Health;
 
 import java.util.Random;
 
 import static com.pdp.producer.utils.Constants.UUID_HEALTH;
+import static com.pdp.producer.utils.Constants.UUID_HEALTH3;
 
-public class HealthMonitoringDevice implements Runnable {
+public class HealthMonitoringDevice3 implements Runnable{
 
     private Random random = new Random();
 
@@ -29,7 +30,7 @@ public class HealthMonitoringDevice implements Runnable {
 //            System.out.println("stepsTaken:- "+stepsTaken+" steps");
 
             Health health=new Health();
-            health.setUUID(UUID_HEALTH);
+            health.setUUID(UUID_HEALTH3);
             health.setSpo2(spo2);
             health.setCaloriesBurned(caloriesBurned);
             health.setStepsTaken(stepsTaken);
