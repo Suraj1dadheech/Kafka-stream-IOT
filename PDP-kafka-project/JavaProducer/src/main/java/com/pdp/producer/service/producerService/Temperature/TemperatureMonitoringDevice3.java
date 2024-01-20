@@ -32,8 +32,8 @@ public class TemperatureMonitoringDevice3 implements Runnable {
             temparature.setUUID(UUID_TEMPERATURE3);
             temparature.setTemperature(temperature);
             temparature.setHumidity(humidity);
-            temparature.setPressure(pressure);
-            temparature.setWindSpeed(windSpeed);
+//            temparature.setPressure(pressure);
+//            temparature.setWindSpeed(windSpeed);
             temparature.setWindDirection(windDirection);
 
             System.out.println(temparature);

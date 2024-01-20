@@ -29,8 +29,8 @@ public class HealthMonitoringDevice4 implements Runnable{
 
             Health health=new Health();
             health.setUUID(UUID_HEALTH4);
-            health.setSpo2(spo2);
-            health.setCaloriesBurned(caloriesBurned);
+//            health.setSpo2(spo2);
+//            health.setCaloriesBurned(caloriesBurned);
             health.setStepsTaken(stepsTaken);
             health.setHeartRate(heartRate);
             health.setSleepDuration(sleepDuration);

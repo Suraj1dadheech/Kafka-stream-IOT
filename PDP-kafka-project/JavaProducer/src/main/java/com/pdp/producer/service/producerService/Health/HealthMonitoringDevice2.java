@@ -34,7 +34,7 @@ public class HealthMonitoringDevice2 implements Runnable{
             health.setSpo2(spo2);
             health.setCaloriesBurned(caloriesBurned);
             health.setStepsTaken(stepsTaken);
-            health.setHeartRate(heartRate);
+//            health.setHeartRate(heartRate);
             health.setSleepDuration(sleepDuration);
 
             System.out.println(health);

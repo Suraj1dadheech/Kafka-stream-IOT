@@ -33,7 +33,7 @@ public class TemperatureMonitoringDevice2 implements Runnable {
             temparature.setTemperature(temperature);
             temparature.setHumidity(humidity);
             temparature.setPressure(pressure);
-            temparature.setWindSpeed(windSpeed);
+//            temparature.setWindSpeed(windSpeed);
             temparature.setWindDirection(windDirection);
 
             System.out.println(temparature);
