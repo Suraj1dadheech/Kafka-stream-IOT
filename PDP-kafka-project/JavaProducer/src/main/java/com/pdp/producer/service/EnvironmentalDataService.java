@@ -9,7 +9,7 @@ import com.pdp.producer.entity.EnvironmentalData;
 @Service
 public class EnvironmentalDataService {
 
-	private static final Random random = new Random();
+	public static final Random random = new Random();
 
 	public double generateTemperature() {
 		return Math.round((10 + random.nextDouble() * 20) * 1000.0) / 1000.0;
