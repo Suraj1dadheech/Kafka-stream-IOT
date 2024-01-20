@@ -80,13 +80,6 @@ public class Health {
 
     @Override
     public String toString() {
-        return "Health{" +
-                "UUID='" + UUID + '\'' +
-                ", heartRate=" + heartRate +
-                ", spo2=" + spo2 +
-                ", sleepDuration=" + sleepDuration +
-                ", caloriesBurned=" + caloriesBurned +
-                ", stepsTaken=" + stepsTaken +
-                '}';
+        return "{ \"UUID\" : " + UUID + ", \"heartRate\" : " + heartRate + ", \"spo2\" : " + spo2 + ", \"sleepDuration\" : "+ sleepDuration + ", \"caloriesBurned\" : " + caloriesBurned + ", \"stepsTaken\" : " + stepsTaken + "\"}";
     }
 }

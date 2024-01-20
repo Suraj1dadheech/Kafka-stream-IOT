@@ -1,14 +1,23 @@
 package com.pdp.producer.service.producerService.Health;
 
 import com.pdp.producer.dto.Health;
+import com.pdp.producer.service.ProducerInvokerService;
+import org.springframework.beans.factory.annotation.Autowired;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Random;
 
 import static com.pdp.producer.utils.Constants.UUID_HEALTH;
 
 public class HealthMonitoringDevice1 implements Runnable {
 
+
+//    @Autowired
+//    private ProducerInvokerService producerInvokerService;
+
     private Random random = new Random();
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SS");
 
 
     @Override
@@ -37,6 +46,9 @@ public class HealthMonitoringDevice1 implements Runnable {
             health.setSleepDuration(sleepDuration);
 
             System.out.println(health);
+
+            String currentTime = LocalDateTime.now().format(formatter);
+            //producerInvokerService.produceIOTdataToKafka(currentTime, health,"HEALTH_TOPIC");
 
             try {
                 Thread.sleep(1000); // Sleep for 3 seconds
