@@ -1,10 +1,15 @@
 package com.pdp.producer.service.producerService;
 
+import com.pdp.producer.dto.Health;
+
 import java.util.Random;
+
+import static com.pdp.producer.utils.Constants.UUID_HEALTH;
 
 public class HealthMonitoringDevice implements Runnable {
 
     private Random random = new Random();
+
 
     @Override
     public void run() {
@@ -16,12 +21,22 @@ public class HealthMonitoringDevice implements Runnable {
             int caloriesBurned = random.nextInt(401) + 100;
             int stepsTaken = random.nextInt(9001) + 1000;
 
-            System.out.println("--------------------HealthMonitoringDevice------------------");
-            System.out.println("Heart Rate:- "+heartRate+" bpm");
-            System.out.println("Spo2:- "+spo2+" %");
-            System.out.println("sleepDuration:- "+sleepDuration+" hrs");
-            System.out.println("caloriesBurned:- "+caloriesBurned+" calories");
-            System.out.println("stepsTaken:- "+stepsTaken+" steps");
+//            System.out.println("--------------------HealthMonitoringDevice------------------");
+//            System.out.println("Heart Rate:- "+heartRate+" bpm");
+//            System.out.println("Spo2:- "+spo2+" %");
+//            System.out.println("sleepDuration:- "+sleepDuration+" hrs");
+//            System.out.println("caloriesBurned:- "+caloriesBurned+" calories");
+//            System.out.println("stepsTaken:- "+stepsTaken+" steps");
+
+            Health health=new Health();
+            health.setUUID(UUID_HEALTH);
+            health.setSpo2(spo2);
+            health.setCaloriesBurned(caloriesBurned);
+            health.setStepsTaken(stepsTaken);
+            health.setHeartRate(heartRate);
+            health.setSleepDuration(sleepDuration);
+
+            System.out.println(health);
 
             try {
                 Thread.sleep(1000); // Sleep for 3 seconds

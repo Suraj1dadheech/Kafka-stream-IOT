@@ -1,6 +1,10 @@
 package com.pdp.producer.service.producerService;
 
+import com.pdp.producer.dto.Mobile;
+
 import java.util.Random;
+
+import static com.pdp.producer.utils.Constants.UUID_MOBILE;
 
 public class MobilePhoneMonitoring implements Runnable{
 
@@ -26,14 +30,26 @@ public class MobilePhoneMonitoring implements Runnable{
             int lockUnlockEvents = random.nextInt(50); // Assuming up to 50 lock/unlock events
 
             // Display generated metrics
-            System.out.println("--------------Mobile phone-----------------------");
-            System.out.println("Call Duration: " + callDuration + " seconds");
-            System.out.println("SMS/MMS Count: " + smsCount);
-            System.out.println("Data Usage: " + String.format("%.2f", dataUsage) + " MB");
-            System.out.println("Internal Storage Usage: " + String.format("%.2f", internalStorageUsage) + " GB");
-            System.out.println("External Storage Usage: " + String.format("%.2f", externalStorageUsage) + " GB");
-            System.out.println("CPU Usage: " + String.format("%.2f", cpuUsage) + "%");
-            System.out.println("Device Lock/Unlock Events: " + lockUnlockEvents);
+//            System.out.println("--------------Mobile phone-----------------------");
+//            System.out.println("Call Duration: " + callDuration + " seconds");
+//            System.out.println("SMS/MMS Count: " + smsCount);
+//            System.out.println("Data Usage: " + String.format("%.2f", dataUsage) + " MB");
+//            System.out.println("Internal Storage Usage: " + String.format("%.2f", internalStorageUsage) + " GB");
+//            System.out.println("External Storage Usage: " + String.format("%.2f", externalStorageUsage) + " GB");
+//            System.out.println("CPU Usage: " + String.format("%.2f", cpuUsage) + "%");
+//            System.out.println("Device Lock/Unlock Events: " + lockUnlockEvents);
+
+            Mobile mobile=new Mobile();
+            mobile.setUUID(UUID_MOBILE);
+            mobile.setCpuUsage(cpuUsage);
+            mobile.setCallDuration(callDuration);
+            mobile.setDataUsage(dataUsage);
+            mobile.setSmsCount(smsCount);
+            mobile.setExternalStorageUsage(externalStorageUsage);
+            mobile.setLockUnlockEvents(lockUnlockEvents);
+            mobile.setInternalStorageUsage(internalStorageUsage);
+
+            System.out.println(mobile);
 
             try {
                 Thread.sleep(1000); // Sleep for 3 seconds

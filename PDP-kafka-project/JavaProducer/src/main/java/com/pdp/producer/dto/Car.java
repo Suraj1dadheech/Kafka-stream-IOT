@@ -8,6 +8,7 @@ import lombok.*;
 @NoArgsConstructor
 @ToString
 public class Car {
+    private String UUID;
     private Double speed;
     private Integer rpm;
     private Double fuelLevel;
