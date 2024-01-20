@@ -2,11 +2,11 @@ package com.pdp.producer.dto;
 
 import lombok.*;
 
-@AllArgsConstructor
-@NoArgsConstructor
-@Getter
-@Setter
-@ToString
+//@AllArgsConstructor
+//@NoArgsConstructor
+//@Getter
+//@Setter
+//@ToString
 public class Mobile {
     private String UUID;
     private Integer callDuration;

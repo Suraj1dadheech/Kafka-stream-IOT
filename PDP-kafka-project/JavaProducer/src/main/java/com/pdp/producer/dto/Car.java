@@ -2,11 +2,11 @@ package com.pdp.producer.dto;
 
 import lombok.*;
 
-@Getter
-@Setter
-@AllArgsConstructor
-@NoArgsConstructor
-@ToString
+//@Getter
+//@Setter
+//@AllArgsConstructor
+//@NoArgsConstructor
+//@ToString
 public class Car {
     private String UUID;
     private Double speed;
