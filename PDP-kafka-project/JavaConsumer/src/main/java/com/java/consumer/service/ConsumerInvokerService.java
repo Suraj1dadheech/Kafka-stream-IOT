@@ -11,22 +11,20 @@ import com.java.consumer.config.KafkaConfig;
 
 public class ConsumerInvokerService {
 	
-	private String topic = "HEALTH_TOPIC";
-	
 	private KafkaConfig kafkaConfig = new KafkaConfig();
 	
-	public void invokeConsumer() {
+	public void invokeConsumer(String topic) {
 		KafkaConsumer<String, String> consumer = kafkaConfig.invokeKafkaConfig();
 		
 		consumer.subscribe(Arrays.asList(topic));
-
+		int count = 0;
 		while(true) {
-//			 System.out.println("polling started...............");
-			 
-			 ConsumerRecords<String, String> consumerRecords = consumer.poll(Duration.ofMillis(1000));
+			 ConsumerRecords<String, String> consumerRecords = consumer.poll(Duration.ofMillis(100));
 			 
 			 for(ConsumerRecord<String, String> record:consumerRecords) {
+				 System.out.println(topic+" - "+count);
 				 System.out.println(record.key()+"    ::::::    "+record.value());
+				 count++;
 			 }
 			 
 		}
