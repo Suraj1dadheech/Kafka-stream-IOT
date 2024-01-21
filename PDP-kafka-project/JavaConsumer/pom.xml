@@ -50,6 +50,12 @@
 		</dependency>
 
 		<dependency>
+			<groupId>com.networknt</groupId>
+			<artifactId>json-schema-validator</artifactId>
+			<version>1.0.86</version>
+		</dependency>
+
+		<dependency>
 			<groupId>org.opensearch.client</groupId>
 			<artifactId>opensearch-rest-high-level-client</artifactId>
 			<version>2.11.1</version>

@@ -11,6 +11,7 @@ import com.java.consumer.collection.Health;
 import com.java.consumer.collection.WeatherData;
 import com.java.consumer.repository.HealthRepository;
 import com.java.consumer.repository.WeatherDataRepository;
+import com.java.consumer.util.JsonSchemaValidatorUtil;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
@@ -29,13 +30,18 @@ public class ConsumerInvokerService {
 
 	@Autowired
 	private WeatherDataRepository weatherDataRepository;
+
+	@Autowired
+	private JsonSchemaValidatorUtil jsonSchemaValidatorUtil;
+
+	@Autowired
+	private ObjectMapper objectMapper;
 	
 	private KafkaConfig kafkaConfig = new KafkaConfig();
 
 	Logger logger = LoggerFactory.getLogger(ConsumerInvokerService.class);
 	
 	public void invokeConsumer(String topic) {
-		ObjectMapper objectMapper = new ObjectMapper();
 		KafkaConsumer<String, String> consumer = kafkaConfig.invokeKafkaConfig();
 		consumer.subscribe(Arrays.asList(topic));
 		int count = 0;
@@ -52,7 +58,9 @@ public class ConsumerInvokerService {
 				 try {
 					if(topic.equals("HEALTH_TOPIC")) {
 						health = objectMapper.readValue(record.value(), Health.class);
-						healthList.add(health);
+						if(jsonSchemaValidatorUtil.validateJson(health,"HEALTH")){
+							healthList.add(health);
+						}
 					}else if(topic.equals("TEMPERATURE_TOPIC")){
 						weatherData = objectMapper.readValue(record.value(), WeatherData.class);
 						weatherDataList.add(weatherData);
