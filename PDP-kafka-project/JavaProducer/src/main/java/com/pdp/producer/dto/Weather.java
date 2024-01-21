@@ -1,7 +1,6 @@
 package com.pdp.producer.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import lombok.*;
 
 //@Getter
 //@Setter
@@ -9,7 +8,7 @@ import lombok.*;
 //@AllArgsConstructor
 //@ToString
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class Temparature {
+public class Weather {
     private String UUID;
     private Double temperature;
     private Double humidity;
@@ -17,7 +16,7 @@ public class Temparature {
     private Double windSpeed;
     private Double windDirection;
 
-    public Temparature(String UUID, Double temperature, Double humidity, Double pressure, Double windSpeed, Double windDirection) {
+    public Weather(String UUID, Double temperature, Double humidity, Double pressure, Double windSpeed, Double windDirection) {
         this.UUID = UUID;
         this.temperature = temperature;
         this.humidity = humidity;
@@ -26,7 +25,7 @@ public class Temparature {
         this.windDirection = windDirection;
     }
 
-    public Temparature() {
+    public Weather() {
     }
 
     public String getUUID() {

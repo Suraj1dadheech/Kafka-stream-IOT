@@ -1,27 +1,30 @@
 package com.pdp.producer.service.producerService.Temperature;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.pdp.producer.dto.Temparature;
+import com.pdp.producer.dto.Weather;
 import com.pdp.producer.service.ProducerInvokerService;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
 
+import com.pdp.producer.utils.ProducerUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import static com.pdp.producer.utils.Constants.UUID_TEMPERATURE;
-import static com.pdp.producer.utils.Constants.UUID_TEMPERATURE4;
+import static java.text.ChoiceFormat.nextDouble;
 
-public class TemperatureMonitoringDevice4 implements Runnable {
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
+public class WeatherMonitoringDevice implements Runnable {
 	
 	private ProducerInvokerService producerInvokerService = new ProducerInvokerService();
 	
 	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SS");
 
     private Random random = new Random();
+    @Autowired
+    private ProducerUtils producerUtils;
 
     @Override
     public void run() {
@@ -40,18 +43,19 @@ public class TemperatureMonitoringDevice4 implements Runnable {
 //            System.out.println("Wind Speed: " + windSpeed + " m/s");
 //            System.out.println("Wind Direction: " + windDirection + " degrees");
 
-            Temparature temparature=new Temparature();
-            temparature.setUUID(UUID_TEMPERATURE4);
-            temparature.setTemperature(temperature);
-            temparature.setHumidity(humidity);
-            temparature.setPressure(pressure);
-            temparature.setWindSpeed(windSpeed);
-            temparature.setWindDirection(windDirection);
+            Weather weather =new Weather();
+            String uuid=producerUtils.fetchRandomUUIDForWeatherDevice();
+            weather.setUUID(uuid);
+            weather.setTemperature(temperature);
+            weather.setHumidity(humidity);
+            weather.setPressure(pressure);
+            weather.setWindSpeed(windSpeed);
+            weather.setWindDirection(windDirection);
 
 //            System.out.println(temparature);
             
             String currentTime = LocalDateTime.now().format(formatter);
-            producerInvokerService.produceIOTdataToKafka(currentTime, generatePartialJson(temparature), "TEMPERATURE_TOPIC");
+            producerInvokerService.produceIOTdataToKafka(currentTime, generatePartialJson(weather), "TEMPERATURE_TOPIC");
 
             try {
                 Thread.sleep(1000); // Sleep for 3 seconds
@@ -60,9 +64,10 @@ public class TemperatureMonitoringDevice4 implements Runnable {
             }
         }
     }
-    private static String generatePartialJson(Temparature temparature) {
+    
+    private static String generatePartialJson(Weather weather) {
         // Convert WeatherDTO to a Map
-        Map<String, Object> attributeMap = new ObjectMapper().convertValue(temparature, Map.class);
+        Map<String, Object> attributeMap = new ObjectMapper().convertValue(weather, Map.class);
 
         // Randomly choose a subset of keys to include in the JSON
         int selectedKeyCount = new Random().nextInt(attributeMap.size()) + 1;
