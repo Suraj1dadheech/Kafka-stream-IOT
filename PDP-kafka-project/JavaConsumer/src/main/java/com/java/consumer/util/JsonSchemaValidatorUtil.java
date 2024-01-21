@@ -73,9 +73,37 @@ public class JsonSchemaValidatorUtil {
                     }
                                         
                     """;
-        }else{
-            return null;
+        }else if(schemaName.equals("WEATHER")){
+            return """
+                    {
+                      "$schema": "http://json-schema.org/draft-07/schema#",
+                      "type": "object",
+                      "properties": {
+                        "uuid": {
+                          "type": "string",
+                          "minLength": 1
+                        },
+                        "temperature": {
+                          "type": "number"
+                        },
+                        "humidity": {
+                          "type": "number"
+                        },
+                        "pressure": {
+                          "type": "number"
+                        },
+                        "windSpeed": {
+                          "type": "number"
+                        },
+                        "windDirection": {
+                          "type": "integer"
+                        }
+                      },
+                      "required": ["uuid", "temperature"]
+                    }
+                    """;
         }
+        return null;
     }
 
 }

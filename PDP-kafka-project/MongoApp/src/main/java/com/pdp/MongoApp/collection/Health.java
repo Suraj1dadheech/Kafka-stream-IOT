@@ -1,4 +1,5 @@
-package com.java.consumer.collection;
+package com.pdp.MongoApp.collection;
+
 
 
 import com.fasterxml.jackson.annotation.JsonInclude;
