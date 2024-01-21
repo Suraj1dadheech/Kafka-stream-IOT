@@ -21,8 +21,8 @@ public class HealthMonitoringDevice implements Runnable {
 
 	private Random random = new Random();
 
-	@Autowired
-	private ProducerUtils producerUtils;
+
+	private ProducerUtils producerUtils = new ProducerUtils();
 
 	@Override
 	public void run() {
