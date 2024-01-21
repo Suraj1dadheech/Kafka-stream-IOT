@@ -22,7 +22,7 @@ public class HealthMonitoringDevice implements Runnable {
 	private Random random = new Random();
 
 
-	private ProducerUtils producerUtils = new ProducerUtils();
+//	private ProducerUtils producerUtils = new ProducerUtils();
 
 	@Override
 	public void run() {
@@ -42,7 +42,7 @@ public class HealthMonitoringDevice implements Runnable {
 //            System.out.println("stepsTaken:- "+stepsTaken+" steps");
 
 			Health health = new Health();
-			String uuid=producerUtils.fetchRandomUUIDForHealthDevice();
+			String uuid=this.fetchRandomUUIDForHealthDevice();
 			health.setUUID(uuid);
 			health.setSpo2(spo2);
 			health.setCaloriesBurned(caloriesBurned);
@@ -86,4 +86,14 @@ public class HealthMonitoringDevice implements Runnable {
 	            return null;
 	        }
 	    }
+
+	public String fetchRandomUUIDForHealthDevice() {
+		String[] uuids = {"417830e4-44f0-4c76-b19c-e3d470c8db9e",
+				"34053e20-1e9b-4163-a476-b5c26a3bc98c",
+				"3720970a-84df-41d4-9a22-215af0370a46",
+				"6a6c2daa-24f9-4251-aede-ea6e5b96ce1f",
+				"67e4bb85-2c62-4869-b7e8-40a50c26f715"
+		};
+		return uuids[random.nextInt(uuids.length)];
+	}
 }

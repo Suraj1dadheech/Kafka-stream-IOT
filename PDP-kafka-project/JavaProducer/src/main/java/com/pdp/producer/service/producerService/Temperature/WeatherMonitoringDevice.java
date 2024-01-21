@@ -24,7 +24,7 @@ public class WeatherMonitoringDevice implements Runnable {
 
     private Random random = new Random();
 
-    private ProducerUtils producerUtils=new ProducerUtils();
+    //private ProducerUtils producerUtils=new ProducerUtils();
 
     @Override
     public void run() {
@@ -44,7 +44,7 @@ public class WeatherMonitoringDevice implements Runnable {
 //            System.out.println("Wind Direction: " + windDirection + " degrees");
 
             Weather weather =new Weather();
-            String uuid=producerUtils.fetchRandomUUIDForWeatherDevice();
+            String uuid=this.fetchRandomUUIDForWeatherDevice();
             weather.setUUID(uuid);
             weather.setTemperature(temperature);
             weather.setHumidity(humidity);
@@ -88,6 +88,17 @@ public class WeatherMonitoringDevice implements Runnable {
             e.printStackTrace();
             return null;
         }
+    }
+
+    public String fetchRandomUUIDForWeatherDevice() {
+
+        String[] uuids = {"be520bc3-15bd-404c-9693-bfb5329b05df",
+                "f41e8631-cac4-4ab2-817e-1ae5f40cc9bc",
+                "da4fe9ff-0fba-44c4-887e-152a5242aa65",
+                "1ef81f9a-0ee8-49c1-927e-18ac445d45f8",
+                "f0048997-5110-4f82-b979-ba95c608259c"};
+        return uuids[random.nextInt(uuids.length)];
+
     }
 
 }
