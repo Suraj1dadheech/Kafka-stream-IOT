@@ -23,6 +23,7 @@ public class WeatherMonitoringDevice implements Runnable {
 	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SS");
 
     private Random random = new Random();
+
     @Autowired
     private ProducerUtils producerUtils;
 
