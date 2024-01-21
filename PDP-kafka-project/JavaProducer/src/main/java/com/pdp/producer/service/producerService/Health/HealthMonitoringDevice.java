@@ -1,26 +1,28 @@
 package com.pdp.producer.service.producerService.Health;
 
-import static com.pdp.producer.utils.Constants.UUID_HEALTH2;
-
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.pdp.producer.dto.Health;
 import com.pdp.producer.service.ProducerInvokerService;
+import com.pdp.producer.utils.ProducerUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 
-public class HealthMonitoringDevice2 implements Runnable {
+public class HealthMonitoringDevice implements Runnable {
 
+	
 	private ProducerInvokerService producerInvokerService = new ProducerInvokerService();
 	
 	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SS");
 
 	private Random random = new Random();
+
+	@Autowired
+	private ProducerUtils producerUtils;
 
 	@Override
 	public void run() {
@@ -40,11 +42,12 @@ public class HealthMonitoringDevice2 implements Runnable {
 //            System.out.println("stepsTaken:- "+stepsTaken+" steps");
 
 			Health health = new Health();
-			health.setUUID(UUID_HEALTH2);
+			String uuid=producerUtils.fetchRandomUUIDForHealthDevice();
+			health.setUUID(uuid);
 			health.setSpo2(spo2);
 			health.setCaloriesBurned(caloriesBurned);
 			health.setStepsTaken(stepsTaken);
-            health.setHeartRate(heartRate);
+			health.setHeartRate(heartRate);
 			health.setSleepDuration(sleepDuration);
 
 //			System.out.println(health);
