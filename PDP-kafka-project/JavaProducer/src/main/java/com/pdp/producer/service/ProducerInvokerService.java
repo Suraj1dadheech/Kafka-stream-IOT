@@ -6,15 +6,8 @@ import org.springframework.stereotype.Service;
 
 import com.pdp.producer.config.KafkaConfig;
 import com.pdp.producer.service.producerService.Health.HealthMonitoringDevice;
-import com.pdp.producer.service.producerService.Health.HealthMonitoringDevice2;
-import com.pdp.producer.service.producerService.Health.HealthMonitoringDevice3;
-import com.pdp.producer.service.producerService.Health.HealthMonitoringDevice4;
-import com.pdp.producer.service.producerService.Health.HealthMonitoringDevice5;
 import com.pdp.producer.service.producerService.Temperature.WeatherMonitoringDevice;
-import com.pdp.producer.service.producerService.Temperature.TemperatureMonitoringDevice2;
-import com.pdp.producer.service.producerService.Temperature.TemperatureMonitoringDevice3;
-import com.pdp.producer.service.producerService.Temperature.TemperatureMonitoringDevice4;
-import com.pdp.producer.service.producerService.Temperature.TemperatureMonitoringDevice5;
+
 
 @Service
 public class ProducerInvokerService {
