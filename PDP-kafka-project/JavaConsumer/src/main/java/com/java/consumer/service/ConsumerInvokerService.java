@@ -1,6 +1,7 @@
 package com.java.consumer.service;
 
 import java.time.Duration;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -53,17 +54,21 @@ public class ConsumerInvokerService {
 			 List<Health> healthList = new ArrayList<>();
 			 for(ConsumerRecord<String, String> record:consumerRecords) {
 				 logger.info(topic+" - "+count);
-				 System.out.println(record.key()+"    ::::::    "+record.value());
+				 logger.info(record.key()+"    ::::::    "+record.value());
 				 count++;
 				 try {
 					if(topic.equals("HEALTH_TOPIC")) {
 						health = objectMapper.readValue(record.value(), Health.class);
 						if(jsonSchemaValidatorUtil.validateJson(health,"HEALTH")){
+							health.setTimestamp(LocalDateTime.parse(record.key()));
 							healthList.add(health);
 						}
 					}else if(topic.equals("TEMPERATURE_TOPIC")){
 						weatherData = objectMapper.readValue(record.value(), WeatherData.class);
-						weatherDataList.add(weatherData);
+						if(jsonSchemaValidatorUtil.validateJson(weatherData,"WEATHER")) {
+							weatherData.setTimestamp(LocalDateTime.parse(record.key()));
+							weatherDataList.add(weatherData);
+						}
 					}
 
 				 }catch(Exception exe){
@@ -76,7 +81,6 @@ public class ConsumerInvokerService {
 			if(!healthList.isEmpty()){
 				healthRepository.saveAll(healthList);
 			}
-
 
 		}
 		
