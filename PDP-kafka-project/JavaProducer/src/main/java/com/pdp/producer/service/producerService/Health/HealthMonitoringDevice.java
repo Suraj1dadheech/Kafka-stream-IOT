@@ -50,7 +50,7 @@ public class HealthMonitoringDevice implements Runnable {
 			health.setHeartRate(heartRate);
 			health.setSleepDuration(sleepDuration);
 
-//			System.out.println(health);
+			System.out.println(health);
 
 			String currentTime = LocalDateTime.now().format(formatter);
 			producerInvokerService.produceIOTdataToKafka(currentTime, generatePartialJson(health), "HEALTH_TOPIC");
