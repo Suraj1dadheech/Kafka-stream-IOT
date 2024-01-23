@@ -1,16 +1,20 @@
 package com.pdp.MongoApp.controller;
 
 
+import com.pdp.MongoApp.collection.Customer;
 import com.pdp.MongoApp.collection.Health;
 import com.pdp.MongoApp.service.IotService;
 import org.bson.Document;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import reactor.core.publisher.Flux;
 
 
+import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -42,6 +46,24 @@ public class IotController {
 
         return iotService.getMaximumCaloriesBurned(startDateTime,endDateTime);
     }
+
+    @GetMapping(value = "/reactive/health",produces = MediaType.TEXT_EVENT_STREAM_VALUE)
+    public Flux<Health> findAllHealth(){
+        Flux<Health> flux = iotService.findAll();
+        flux = flux.timeout(Duration.ofMinutes(5));
+        return flux;
+    }
+
+//    @GetMapping("/basic/reactive/customer")
+//    @GetMapping(value = "/reactive/customer",produces = MediaType.TEXT_EVENT_STREAM_VALUE)
+//    public Flux<Customer> findAllHealth1(){
+//        return  Flux.range(1,50)
+//                .delayElements(Duration.ofSeconds(1))
+//                .doOnNext(i -> System.out.println("processing........."))
+//                .map(i-> new Customer(i,"customer " +i));
+//    }
+
+
 
 
 }

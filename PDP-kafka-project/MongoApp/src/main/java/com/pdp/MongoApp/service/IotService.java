@@ -4,6 +4,7 @@ package com.pdp.MongoApp.service;
 import com.pdp.MongoApp.collection.Health;
 import com.pdp.MongoApp.collection.WeatherData;
 import com.pdp.MongoApp.repository.HealthRepository;
+import com.pdp.MongoApp.repository.HealthRepositoryReactive;
 import org.bson.Document;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,6 +16,7 @@ import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import reactor.core.publisher.Flux;
 
 import java.lang.annotation.Documented;
 import java.time.LocalDateTime;
@@ -26,6 +28,10 @@ public class IotService {
 
     @Autowired
     private HealthRepository healthRepository;
+
+    @Autowired
+    private HealthRepositoryReactive healthRepositoryReactive;
+
 
     @Autowired
     private MongoTemplate mongoTemplate;
@@ -69,6 +75,10 @@ public class IotService {
         return new ResponseEntity<>(result,HttpStatus.OK);
     }
 
+
+    public Flux<Health> findAll(){
+        return healthRepositoryReactive.findAll();
+    }
 
 
 
