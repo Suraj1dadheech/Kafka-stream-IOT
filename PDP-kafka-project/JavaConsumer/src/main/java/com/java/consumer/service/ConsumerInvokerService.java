@@ -19,7 +19,10 @@ public class ConsumerInvokerService {
 		consumer.subscribe(Arrays.asList(topic));
 		int count = 0;
 		while(true) {
-			 ConsumerRecords<String, String> consumerRecords = consumer.poll(Duration.ofMillis(100));
+			 ConsumerRecords<String, String> consumerRecords = consumer.poll(Duration.ofMillis(10000));
+			 System.out.println("polling..................");
+			 
+//			 consumerRecords.iterator().forEachRemaining(System.out::println);
 			 
 			 for(ConsumerRecord<String, String> record:consumerRecords) {
 				 System.out.println(topic+" - "+count);

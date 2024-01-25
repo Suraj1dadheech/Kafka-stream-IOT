@@ -10,20 +10,20 @@ import com.java.consumer.service.ConsumerInvokerService;
 @RequestMapping("/api/v1")
 public class ConsumerController {
 	
-	String healthTopic = "HEALTH_TOPIC";
+//	String healthTopic = "HEALTH_TOPIC";
+//	
+//	String temperatureTopic = "TEMPERATURE_TOPIC";
+//	
+//	private ConsumerInvokerService consumerInvokerService = new ConsumerInvokerService();
 	
-	String temperatureTopic = "TEMPERATURE_TOPIC";
-	
-	private ConsumerInvokerService consumerInvokerService = new ConsumerInvokerService();
-	
-	@GetMapping("/consume/health")
-	public void consumeHealthData() {
-		consumerInvokerService.invokeConsumer(healthTopic);
+	@GetMapping("/home")
+	public String consumeHealthData() {
+		return "consumer application is running.";
 	}
 	
-	@GetMapping("/consume/temperature")
-	public void consumeTemperatureData() {
-		consumerInvokerService.invokeConsumer(temperatureTopic);
-	}
+//	@GetMapping("/consume/temperature")
+//	public void consumeTemperatureData() {
+//		consumerInvokerService.invokeConsumer(temperatureTopic);
+//	}
 
 }
