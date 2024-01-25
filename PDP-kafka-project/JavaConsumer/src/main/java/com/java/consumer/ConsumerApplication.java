@@ -8,20 +8,20 @@ import com.java.consumer.service.ConsumerInvokerService;
 
 @SpringBootApplication
 public class ConsumerApplication {
-	static String healthTopic = "HEALTH_TOPIC";
-
-	static String temperatureTopic = "TEMPERATURE_TOPIC";
-
-	private static ConsumerInvokerService consumerInvokerService = new ConsumerInvokerService();
+//	static String healthTopic = "HEALTH_TOPIC";
+//
+//	static String temperatureTopic = "TEMPERATURE_TOPIC";
+//
+//	private static ConsumerInvokerService consumerInvokerService = new ConsumerInvokerService();
 
 	public static void main(String[] args) {
 		SpringApplication.run(ConsumerApplication.class, args);
-		invokeConsumers();
+//		invokeConsumers();
 	}
 
-	public static void invokeConsumers() {
-		consumerInvokerService.invokeConsumer(healthTopic);
-		consumerInvokerService.invokeConsumer(temperatureTopic);
-	}
+//	public static void invokeConsumers() {
+//		consumerInvokerService.invokeConsumer(healthTopic);
+//		consumerInvokerService.invokeConsumer(temperatureTopic);
+//	}
 
 }

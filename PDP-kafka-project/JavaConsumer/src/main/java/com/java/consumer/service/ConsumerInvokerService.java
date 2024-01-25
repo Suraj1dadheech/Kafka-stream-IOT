@@ -49,17 +49,9 @@ public class ConsumerInvokerService {
 		Health health;
 		WeatherData weatherData;
 		while(true) {
-<<<<<<< HEAD
-			 ConsumerRecords<String, String> consumerRecords = consumer.poll(Duration.ofMillis(10000));
-			 System.out.println("polling..................");
-			 
-//			 consumerRecords.iterator().forEachRemaining(System.out::println);
-			 
-=======
-			 ConsumerRecords<String, String> consumerRecords = consumer.poll(Duration.ofMillis(1000));
+			  ConsumerRecords<String, String> consumerRecords = consumer.poll(Duration.ofMillis(1000));
 			 List<WeatherData> weatherDataList = new ArrayList<>();
 			 List<Health> healthList = new ArrayList<>();
->>>>>>> bb534872871eaacacdd5404996df7e2ac78eb393
 			 for(ConsumerRecord<String, String> record:consumerRecords) {
 				 logger.info(topic+" - "+count);
 				 logger.info(record.key()+"    ::::::    "+record.value());
